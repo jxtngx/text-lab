@@ -1,0 +1,4 @@
+pytorch-lightning
+torch
+optuna
+torch-tb-profiler
