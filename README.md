@@ -1,4 +1,4 @@
-# Lightning Lab
+# Text Lab
 
 ## Overview
 
