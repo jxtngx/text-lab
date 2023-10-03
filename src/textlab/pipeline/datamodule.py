@@ -5,7 +5,7 @@ from pathlib import Path
 from pytorch_lightning import LightningDataModule
 from torch.utils.data import DataLoader, Dataset, random_split
 
-from textlab.pipeline.dataset import LabDataset
+from textlab.pipeline import LabDataset
 
 filepath = Path(__file__)
 PROJECTPATH = os.getcwd()
@@ -41,9 +41,6 @@ class LabDataModule(LightningDataModule):
             self.train_data, self.val_data = random_split(full_dataset, lengths=[train_size, test_size])
         if stage == "test" or stage is None:
             self.test_data = self.dataset(self.data_dir, train=False, transform=self.transforms)
-
-    # def teardown(self):
-    #     pass
 
     def train_dataloader(self):
         return DataLoader(self.train_data, num_workers=self.num_workers)

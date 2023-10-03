@@ -15,8 +15,8 @@
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
-import lightning as L
 import torch
+import pytorch_lightning as pl
 from pytorch_lightning import seed_everything
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import Logger, TensorBoardLogger
@@ -25,7 +25,7 @@ from pytorch_lightning.profilers import Profiler, PyTorchProfiler
 from textlab import conf
 
 
-class LabTrainer(L.Trainer):
+class LabTrainer(pl.Trainer):
     def __init__(
         self,
         logger: Optional[Logger] = None,
