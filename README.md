@@ -6,25 +6,25 @@ Lightning Lab is a public template for artificial intelligence and machine learn
 
 The recommended way for Lightning Lab users to create new repos is with the [use this template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) button.
 
-An adaptation can be found at [lightning-vision](https://github.com/JustinGoheen/text-lab-vision).
+An adaptation can be found at [lightning-vision](https://github.com/JustinGoheen/textlab-vision).
 
 ## The Structure
 
 ### Source Module
 
-`text_lab.core` should contain code for the Lightning Module and Trainer.
+`textlab.core` should contain code for the Lightning Module and Trainer.
 
-`text_lab.components` should contain experiment utilities grouped by purpose for cohesion.
+`textlab.components` should contain experiment utilities grouped by purpose for cohesion.
 
-`text_lab.pipeline` should contain code for data acquistion and preprocessing, and building a TorchDataset and LightningDataModule.
+`textlab.pipeline` should contain code for data acquistion and preprocessing, and building a TorchDataset and LightningDataModule.
 
-`text_lab.api` should contain code for model serving APIs built with [FastAPI](https://fastapi.tiangolo.com/project-generation/#machine-learning-models-with-spacy-and-fastapi).
+`textlab.api` should contain code for model serving APIs built with [FastAPI](https://fastapi.tiangolo.com/project-generation/#machine-learning-models-with-spacy-and-fastapi).
 
-`text_lab.cli` should contain code for the command line interface built with [Click](https://click.palletsprojects.com/en/8.1.x/) and [Rich](https://rich.readthedocs.io/en/stable/).
+`textlab.cli` should contain code for the command line interface built with [Click](https://click.palletsprojects.com/en/8.1.x/) and [Rich](https://rich.readthedocs.io/en/stable/).
 
-`text_lab.pages` should contain code for data apps built with streamlit, dash, or reflex. the `pages` module naming convention is borrowed from React concepts.
+`textlab.pages` should contain code for data apps built with streamlit, dash, or reflex. the `pages` module naming convention is borrowed from React concepts.
 
-`text_lab.conf.py` can assist with project, trainer, and sweep configurations.
+`textlab.conf.py` can assist with project, trainer, and sweep configurations.
 
 ### Project Root
 

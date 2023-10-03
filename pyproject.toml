@@ -23,7 +23,7 @@ line-length = 120
 
 [tool.isort]
 known_first_party = [
-    "text_lab",
+    "textlab",
 ]
 profile = "black"
 line_length = 120
@@ -52,7 +52,7 @@ ignore-init-module-imports = true
 max-complexity = 10
 
 [tool.mypy]
-files = ["text_lab"]
+files = ["textlab"]
 install_types = true
 non_interactive = true
 disallow_untyped_defs = true
@@ -67,14 +67,14 @@ disable_error_code = "attr-defined"
 # style choices
 warn_no_return = "False"
 
-# do not add type hints to lightnig_pod/cli/seed/ or core.module
+# do not add type hints to lightnig_Lab/cli/seed/ or core.module
 # because lightning already defines types
 [[tool.mypy.overrides]]
 module = [
-    "text_lab.core.module",
-    "text_lab.cli.seed.core.module",
-    "text_lab.cli.seed.core.trainer",
-    "text_lab.cli.seed.pipeline.datamodule",
-    "text_lab.cli.seed.pipeline.dataset",
+    "textlab.core.module",
+    "textlab.cli.seed.core.module",
+    "textlab.cli.seed.core.trainer",
+    "textlab.cli.seed.pipeline.datamodule",
+    "textlab.cli.seed.pipeline.dataset",
 ]
 ignore_errors = true

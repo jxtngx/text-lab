@@ -20,10 +20,10 @@ rootdir = Path(__file__).parent
 long_description = (rootdir / "README.md").read_text()
 
 setup(
-    name="text-lab",
+    name="textlab",
     version="0.0.1",
     package_dir={"": "src"},
-    packages=["text_lab"],
+    packages=["textlab"],
     description="",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -37,5 +37,6 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
     ],
 )

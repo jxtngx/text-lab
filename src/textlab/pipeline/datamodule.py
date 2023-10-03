@@ -2,20 +2,20 @@ import multiprocessing
 import os
 from pathlib import Path
 
-from lightning.pytorch import LightningDataModule
+from pytorch_lightning import LightningDataModule
 from torch.utils.data import DataLoader, Dataset, random_split
 
-from text_lab.pipeline.dataset import PodDataset
+from textlab.pipeline.dataset import LabDataset
 
 filepath = Path(__file__)
 PROJECTPATH = os.getcwd()
 NUMWORKERS = int(multiprocessing.cpu_count() // 2)
 
 
-class PodDataModule(LightningDataModule):
+class LabDataModule(LightningDataModule):
     def __init__(
         self,
-        dataset: Dataset = PodDataset,
+        dataset: Dataset = LabDataset,
         data_dir: str = "data",
         split: bool = True,
         train_size: float = 0.8,

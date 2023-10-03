@@ -17,15 +17,15 @@ from typing import Any, Dict, List, Optional, Union
 
 import lightning as L
 import torch
-from lightning.pytorch import seed_everything
-from lightning.pytorch.callbacks import ModelCheckpoint
-from lightning.pytorch.loggers import Logger, TensorBoardLogger
-from lightning.pytorch.profilers import Profiler, PyTorchProfiler
+from pytorch_lightning import seed_everything
+from pytorch_lightning.callbacks import ModelCheckpoint
+from pytorch_lightning.loggers import Logger, TensorBoardLogger
+from pytorch_lightning.profilers import Profiler, PyTorchProfiler
 
-from text_lab import conf
+from textlab import conf
 
 
-class PodTrainer(L.Trainer):
+class LabTrainer(L.Trainer):
     def __init__(
         self,
         logger: Optional[Logger] = None,
