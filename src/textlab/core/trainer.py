@@ -22,7 +22,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import Logger, TensorBoardLogger
 from pytorch_lightning.profilers import Profiler, PyTorchProfiler
 
-from textlab import conf
+from textlab import config
 
 
 class LabTrainer(pl.Trainer):
@@ -37,16 +37,16 @@ class LabTrainer(pl.Trainer):
     ) -> None:
         # SET SEED
         if set_seed:
-            seed_everything(conf.GLOBALSEED, workers=True)
+            seed_everything(config.GLOBALSEED, workers=True)
         super().__init__(
-            logger=logger or TensorBoardLogger(conf.LOGSPATH, name="tensorboard"),
-            profiler=profiler or PyTorchProfiler(dirpath=conf.TORCHPROFILERPATH, filename="profiler"),
-            callbacks=callbacks + [ModelCheckpoint(dirpath=conf.CHKPTSPATH, filename="model")],
+            logger=logger or TensorBoardLogger(config.LOGSPATH, name="tensorboard"),
+            profiler=profiler or PyTorchProfiler(dirpath=config.TORCHPROFILERPATH, filename="profiler"),
+            callbacks=callbacks + [ModelCheckpoint(dirpath=config.CHKPTSPATH, filename="model")],
             plugins=plugins,
             **trainer_init_kwargs
         )
 
-    def persist_predictions(self, predictions_dir: Optional[Union[str, Path]] = conf.PREDSPATH) -> None:
+    def persist_predictions(self, predictions_dir: Optional[Union[str, Path]] = config.PREDSPATH) -> None:
         self.test(ckpt_path="best", datamodule=self.datamodule)
         predictions = self.predict(self.model, self.datamodule.val_dataloader())
         torch.save(predictions, predictions_dir)

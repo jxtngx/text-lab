@@ -22,7 +22,7 @@ The recommended way for Text Lab users to create new repos is with the [use this
 
 `textlab.pages` should contain code for data apps built with streamlit, dash, or reflex. the `pages` module naming convention is borrowed from React concepts.
 
-`textlab.conf` can assist with project, trainer, and sweep configurations.
+`textlab.config` can assist with project, trainer, and sweep configurations.
 
 ### Project Root
 
