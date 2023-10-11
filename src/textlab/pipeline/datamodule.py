@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader, random_split
 import pytorch_lightning as pl
 from pytorch_lightning.utilities.types import EVAL_DATALOADERS, TRAIN_DATALOADERS
 
-from textlab import config
+from textlab import Config
 from textlab.pipeline import LabDataset
 
 NUMWORKERS = int(multiprocessing.cpu_count() // 2)
@@ -17,7 +17,7 @@ class LabDataModule(pl.LightningDataModule):
     def __init__(
         self,
         num_workers: int = NUMWORKERS,
-        data_dir: Path = Path("./data"),
+        data_dir: Path = Config.DATAPATH,
         block_size: int = 35,
         download: bool = True,
         train_size: float = 0.8,
