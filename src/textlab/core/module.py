@@ -5,7 +5,7 @@ https://github.com/pytorch/examples/blob/main/word_language_model
 
 """
 import math
-from typing import Optional
+from typing import Any, Optional
 
 
 import torch
@@ -14,7 +14,7 @@ import torch.nn.functional as F
 from torch import Tensor
 from torch.nn.modules import MultiheadAttention
 
-from pytorch_lightning import LightningModule
+import pytorch_lightning as pl
 
 if hasattr(MultiheadAttention, "_reset_parameters") and not hasattr(MultiheadAttention, "reset_parameters"):
     # See https://github.com/pytorch/pytorch/issues/107909
@@ -88,7 +88,7 @@ class PositionalEncoding(nn.Module):
         return pe
 
 
-class LabModule(LightningModule):
+class LabModule(pl.LightningModule):
     def __init__(self, vocab_size: int = 33278):
         super().__init__()
         self.model = Transformer(vocab_size=vocab_size)
@@ -101,6 +101,18 @@ class LabModule(LightningModule):
         output = self(inputs, target)
         loss = torch.nn.functional.nll_loss(output, target.view(-1))
         return loss
+
+    def validation_step(self, batch, batch_idx):
+        inputs, target = batch
+        output = self(inputs, target)
+        loss = torch.nn.functional.nll_loss(output, target.view(-1))
+        self.log("val-loss", loss)
+
+    def test_step(self, batch, batch_idx):
+        inputs, target = batch
+        output = self(inputs, target)
+        loss = torch.nn.functional.nll_loss(output, target.view(-1))
+        self.log("test-loss", loss)
 
     def configure_optimizers(self):
         return torch.optim.SGD(self.model.parameters(), lr=0.1)
