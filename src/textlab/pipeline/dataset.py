@@ -14,13 +14,15 @@ from torch import Tensor
 
 from torch.utils.data import Dataset
 
+from textlab import Config
 
-class WikiText2(Dataset):
+
+class LabDataset(Dataset):
     """Mini version of WikiText2."""
 
-    def __init__(self, data_dir: Path = Path("./data"), block_size: int = 35, download: bool = True) -> None:
+    def __init__(self, data_dir: Path = Config.DATAPATH, block_size: int = 35, download: bool = True) -> None:
         super().__init__()
-        self.path = data_dir / "wikitext-2.txt"
+        self.path = Path(data_dir) / "wikitext-2.txt"
         if download:
             self.download(self.path)
         self.data, self.dictionary = tokenize(self.path)

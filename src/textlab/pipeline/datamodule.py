@@ -7,7 +7,7 @@ import pytorch_lightning as pl
 from pytorch_lightning.utilities.types import EVAL_DATALOADERS, TRAIN_DATALOADERS
 
 from textlab import Config
-from textlab.pipeline import LabDataset
+from textlab.pipeline.dataset import LabDataset
 
 NUMWORKERS = int(multiprocessing.cpu_count() // 2)
 

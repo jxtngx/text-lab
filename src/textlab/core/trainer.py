@@ -22,7 +22,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import Logger, TensorBoardLogger
 from pytorch_lightning.profilers import Profiler, PyTorchProfiler
 
-from textlab import config
+from textlab import Config
 
 
 class LabTrainer(pl.Trainer):
@@ -30,23 +30,27 @@ class LabTrainer(pl.Trainer):
         self,
         logger: Optional[Logger] = None,
         profiler: Optional[Profiler] = None,
-        callbacks: Optional[List] = [],
-        plugins: Optional[List] = [],
+        callbacks: Optional[List] = None,
+        plugins: Optional[List] = None,
         set_seed: bool = True,
-        **trainer_init_kwargs: Dict[str, Any]
+        **kwargs: Dict[str, Any]
     ) -> None:
         # SET SEED
         if set_seed:
-            seed_everything(config.GLOBALSEED, workers=True)
+            seed_everything(Config.GLOBALSEED, workers=True)
+        if callbacks and not isinstance(callbacks, list):
+            callbacks = [callbacks]
+        if not callbacks:
+            callbacks = []
         super().__init__(
-            logger=logger or TensorBoardLogger(config.LOGSPATH, name="tensorboard"),
-            profiler=profiler or PyTorchProfiler(dirpath=config.TORCHPROFILERPATH, filename="profiler"),
-            callbacks=callbacks + [ModelCheckpoint(dirpath=config.CHKPTSPATH, filename="model")],
+            logger=logger or TensorBoardLogger(Config.LOGSPATH, name="tensorboard"),
+            profiler=profiler or PyTorchProfiler(dirpath=Config.TORCHPROFILERPATH, filename="profiler"),
+            callbacks=callbacks + [ModelCheckpoint(dirpath=Config.CHKPTSPATH, filename="model")],
             plugins=plugins,
-            **trainer_init_kwargs
+            **kwargs
         )
 
-    def persist_predictions(self, predictions_dir: Optional[Union[str, Path]] = config.PREDSPATH) -> None:
+    def persist_predictions(self, predictions_dir: Optional[Union[str, Path]] = Config.PREDSPATH) -> None:
         self.test(ckpt_path="best", datamodule=self.datamodule)
         predictions = self.predict(self.model, self.datamodule.val_dataloader())
         torch.save(predictions, predictions_dir)

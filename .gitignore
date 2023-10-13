@@ -149,6 +149,5 @@ logs/tensorboard/version*
 logs/torch_profiler/fit*
 logs/torch_profiler/predict*
 logs/torch_profiler/test*
-logs/wandb_logs/wandb
-data/cache/LabDataset
-wandb/
+logs/wandb/wandb
+data/cache/
