@@ -18,8 +18,6 @@ The recommended way for Text Lab users to create new repos is with the [use this
 
 `textlab.cli` should contain code for the command line interface built with [Typer](https://typer.tiangolo.com/)and [Rich](https://rich.readthedocs.io/en/stable/).
 
-`textlab.pages` should contain code for data apps built with streamlit, dash, or reflex. the `pages` module naming convention is borrowed from React concepts.
-
 `textlab.config` can assist with project, trainer, and sweep configurations.
 
 ## Base Requirements and Extras
