@@ -2,7 +2,7 @@
 
 ## Overview
 
-Text Lab is a public template for artificial intelligence and machine learning research projects using Lightning AI's [PyTorch Lightning](https://lightning.ai/docs/pytorch/latest/) to train a Transformer model that is written in PyTorch.
+Text Lab is a public template for artificial intelligence and machine learning research projects using Lightning AI's [PyTorch Lightning](https://lightning.ai/docs/pytorch/latest/) to train a lanaguage Transformer that is implemented in PyTorch.
 
 The recommended way for Text Lab users to create new repos is with the [use this template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) button.
 
@@ -18,7 +18,7 @@ The recommended way for Text Lab users to create new repos is with the [use this
 
 `textlab.cli` contains code for the command line interface built with [Typer](https://typer.tiangolo.com/)and [Rich](https://rich.readthedocs.io/en/stable/).
 
-`textlab.config` can assist with project, trainer, and sweep configurations.
+`textlab.config` assists with project, trainer, and sweep configurations.
 
 ## Base Requirements and Extras
 
@@ -31,3 +31,36 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[all]"
 ```
+
+## Additional Features
+
+Text Lab also enables use of a CLI named `lab` that is built with [Typer](https://typer.tiangolo.com). This CLI is available in the terminal after install. `lab` features can be view with:
+
+
+```sh
+lab --help
+```
+
+A [fast dev run](https://lightning.ai/docs/pytorch/latest/common/trainer.html#fast-dev-run) cab be ran with:
+
+```sh
+lab trainer dev-run
+```
+
+A longer demo run can be inititated with:
+
+```sh
+lab trainer demo-run
+```
+
+### Weights and Biases
+
+If you have a [Weights and Biases](https://wandb.ai/site) account, you can override the default CSV logger and use wanbd with:
+
+```sh
+lab trainer demo-run --logger wandb
+```
+
+### Streamlit
+
+Stay tuned for the Streamlit app!
