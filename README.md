@@ -8,15 +8,15 @@ The recommended way for Text Lab users to create new repos is with the [use this
 
 ## Source Module
 
-`textlab.core` should contain code for the Lightning Module and Trainer.
+`textlab.core` contains code for the Lightning Module and Trainer.
 
-`textlab.components` should contain experiment utilities grouped by purpose for cohesion.
+`textlab.components` contains experiment utilities grouped by purpose for cohesion.
 
-`textlab.pipeline` should contain code for data acquistion and preprocessing, and building a TorchDataset and LightningDataModule.
+`textlab.pipeline` contains code for data acquistion and preprocessing, and building a TorchDataset and LightningDataModule.
 
-`textlab.serve` should contain code for model serving APIs built with [FastAPI](https://fastapi.tiangolo.com/project-generation/#machine-learning-models-with-spacy-and-fastapi).
+`textlab.serve` contains code for model serving APIs built with [FastAPI](https://fastapi.tiangolo.com/project-generation/#machine-learning-models-with-spacy-and-fastapi).
 
-`textlab.cli` should contain code for the command line interface built with [Typer](https://typer.tiangolo.com/)and [Rich](https://rich.readthedocs.io/en/stable/).
+`textlab.cli` contains code for the command line interface built with [Typer](https://typer.tiangolo.com/)and [Rich](https://rich.readthedocs.io/en/stable/).
 
 `textlab.config` can assist with project, trainer, and sweep configurations.
 
