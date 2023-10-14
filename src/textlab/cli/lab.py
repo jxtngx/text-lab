@@ -16,9 +16,9 @@ PKGPATH = FILEPATH.parents[1]
 
 app = typer.Typer()
 docs_app = typer.Typer()
-trainer_app = typer.Typer()
+run_app = typer.Typer()
 app.add_typer(docs_app, name="docs")
-app.add_typer(trainer_app, name="trainer")
+app.add_typer(run_app, name="run")
 
 
 @app.callback()
@@ -42,19 +42,21 @@ def serve_docs() -> None:
     os.system("mkdocs serve")
 
 
-# Trainer
+# Run
 
 
-@trainer_app.command("dev-run")
-def trainer_dev_run():
+@run_app.command("dev-run")
+def run_dev_run():
     datamodule = LabDataModule()
     model = LabModule()
     trainer = LabTrainer(fast_dev_run=True)
     trainer.fit(model=model, datamodule=datamodule)
 
 
-@trainer_app.command("demo-run")
-def trainer_demo_run(logger: Annotated[str, typer.Option(help="logger to use. one of (`wanbd`, `csv`)")] = "csv"):
+@run_app.command("demo-run")
+def run_demo_run(
+    logger: Annotated[str, typer.Option(help="logger to use. one of (`wandb`, `csv`)")] = "csv",
+):
     if logger == "wandb":
         logger = WandbLogger(name="textlab-demo", save_dir=Config.WANDBPATH)
 
@@ -76,3 +78,8 @@ def trainer_demo_run(logger: Annotated[str, typer.Option(help="logger to use. on
         profiler=PyTorchProfiler(dirpath="logs/torch_profiler"),
     )
     trainer.fit(model=model, datamodule=datamodule)
+
+
+@run_app.command("streamlit")
+def run_streamlit():
+    os.system(f"streamlit run {PKGPATH / 'app/streamlit.py'}")

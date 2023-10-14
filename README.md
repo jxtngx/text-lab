@@ -44,13 +44,13 @@ lab --help
 A [fast dev run](https://lightning.ai/docs/pytorch/latest/common/trainer.html#fast-dev-run) cab be ran with:
 
 ```sh
-lab trainer dev-run
+lab run dev-run
 ```
 
 A longer demo run can be inititated with:
 
 ```sh
-lab trainer demo-run
+lab run demo-run
 ```
 
 ### Weights and Biases
@@ -58,7 +58,7 @@ lab trainer demo-run
 If you have a [Weights and Biases](https://wandb.ai/site) account, you can override the default CSV logger and use wanbd with:
 
 ```sh
-lab trainer demo-run --logger wandb
+lab run demo-run --logger wandb
 ```
 
 ### Streamlit
