@@ -58,7 +58,7 @@ def run_demo_run(
     logger: Annotated[str, typer.Option(help="logger to use. one of (`wandb`, `csv`)")] = "csv",
 ):
     if logger == "wandb":
-        logger = WandbLogger(name="textlab-demo", save_dir=Config.WANDBPATH)
+        logger = WandbLogger(name="textlab-demo", save_dir=Config.WANDBPATH, project=Config.PROJECTNAME)
 
     else:
         logger = CSVLogger(save_dir=Config.CSVLOGGERPATH)

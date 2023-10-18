@@ -8,6 +8,7 @@ filepath = Path(__file__)
 class Config:
     GLOBALSEED = 42
     PROJECTPATH = filepath.parents[2]
+    PROJECTNAME = PROJECTPATH.name.lower()
     LOGSPATH = os.path.join(PROJECTPATH, "logs")
     TORCHPROFILERPATH = os.path.join(LOGSPATH, "torch_profiler")
     SIMPLEPROFILERPATH = os.path.join(LOGSPATH, "simple_profiler")
