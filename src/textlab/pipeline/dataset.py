@@ -11,7 +11,6 @@ from typing import Dict, List, Tuple
 import requests
 import torch
 from torch import Tensor
-
 from torch.utils.data import Dataset
 
 from textlab import Config
@@ -39,7 +38,7 @@ class LabDataset(Dataset):
         start = index * self.block_size
         end = start + self.block_size
         inputs = self.data[start:end]
-        target = self.data[(start + 1) : (end + 1)]
+        target = self.data[(start + 1) : (end + 1)]  # noqa: E203
         return inputs, target
 
     @staticmethod

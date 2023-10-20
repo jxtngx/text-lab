@@ -5,16 +5,14 @@ https://github.com/pytorch/examples/blob/main/word_language_model
 
 """
 import math
-from typing import Any, Optional
+from typing import Optional
 
-
+import pytorch_lightning as pl
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from torch.nn.modules import MultiheadAttention
-
-import pytorch_lightning as pl
 
 if hasattr(MultiheadAttention, "_reset_parameters") and not hasattr(MultiheadAttention, "reset_parameters"):
     # See https://github.com/pytorch/pytorch/issues/107909

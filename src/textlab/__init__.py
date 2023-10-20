@@ -13,6 +13,5 @@
 # limitations under the License.
 
 from textlab.config import Config
-from textlab.core import LabModule
-from textlab.core import LabTrainer
+from textlab.core import LabModule, LabTrainer
 from textlab.pipeline import LabDataModule

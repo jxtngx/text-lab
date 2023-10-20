@@ -20,6 +20,8 @@ The recommended way for Text Lab users to create new repos is with the [use this
 
 `textlab.config` assists with project, trainer, and sweep configurations.
 
+`textlab.app` contains code for a Streamlit app.
+
 ## Base Requirements and Extras
 
 Text Lab installs minimal requirements out of the box, and provides extras to make creating robust virtual environments easier. To view the requirements, in [setup.cfg](setup.cfg), see `install_requires` for the base requirements and `options.extras_require` for the available extras.

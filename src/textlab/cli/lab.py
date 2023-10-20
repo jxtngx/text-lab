@@ -2,13 +2,13 @@ import os
 from pathlib import Path
 
 import typer
-from typing_extensions import Annotated
 from pytorch_lightning.callbacks import EarlyStopping
-from pytorch_lightning.loggers.wandb import WandbLogger
 from pytorch_lightning.loggers.csv_logs import CSVLogger
+from pytorch_lightning.loggers.wandb import WandbLogger
 from pytorch_lightning.profilers import PyTorchProfiler
+from typing_extensions import Annotated
 
-from textlab import Config, LabTrainer, LabDataModule, LabModule
+from textlab import Config, LabDataModule, LabModule, LabTrainer
 
 FILEPATH = Path(__file__)
 PROJECTPATH = FILEPATH.parents[2]

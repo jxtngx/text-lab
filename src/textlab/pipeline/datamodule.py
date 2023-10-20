@@ -1,10 +1,9 @@
 import multiprocessing
 from pathlib import Path
 
-from torch.utils.data import DataLoader, random_split
-
 import pytorch_lightning as pl
 from pytorch_lightning.utilities.types import EVAL_DATALOADERS, TRAIN_DATALOADERS
+from torch.utils.data import DataLoader, random_split
 
 from textlab import Config
 from textlab.pipeline.dataset import LabDataset
