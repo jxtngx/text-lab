@@ -34,10 +34,9 @@ source .venv/bin/activate
 pip install -e ".[all]"
 ```
 
-## Additional Features
+## Using Text Lab
 
-Text Lab also enables use of a CLI named `lab` that is built with [Typer](https://typer.tiangolo.com). This CLI is available in the terminal after install. `lab` features can be view with:
-
+Text Lab also enables use of a CLI named `lab` that is built with [Typer](https://typer.tiangolo.com). This CLI is available in the terminal after install. `lab` features can be viewed with:
 
 ```sh
 lab --help
