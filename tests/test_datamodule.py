@@ -18,6 +18,7 @@ from pathlib import Path
 import torch
 
 from textlab.pipeline.datamodule import LabDataModule
+from textlab.config import Config
 
 
 def test_module_not_abstract():
@@ -27,10 +28,7 @@ def test_module_not_abstract():
 def test_prepare_data():
     datamodule = LabDataModule()
     datamodule.prepare_data()
-    networkpath = Path(__file__).parent
-    projectpath = networkpath.parents[0]
-    datapath = os.path.join(projectpath, "data", "cache")
-    assert "LabDataset" in os.listdir(datapath)
+    assert "LabDataset" in os.listdir(Config.DATAPATH)
 
 
 def test_setup():
@@ -44,7 +42,7 @@ def test_setup():
 def test_trainloader():
     datamodule = LabDataModule()
     datamodule.prepare_data()
-    datamodule.setup()
+    datamodule.setup("fit")
     loader = datamodule.train_dataloader()
     sample = loader.dataset[0][0]
     assert isinstance(sample, torch.Tensor)

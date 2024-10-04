@@ -91,25 +91,25 @@ class LabModule(pl.LightningModule):
         super().__init__()
         self.model = Transformer(vocab_size=vocab_size)
 
-    def forward(self, inputs, target):
-        return self.model(inputs, target)
+    def forward(self, inputs):
+        return self.model(inputs)
 
     def training_step(self, batch, batch_idx):
         inputs, target = batch
-        output = self(inputs, target)
+        output = self(inputs)
         loss = torch.nn.functional.nll_loss(output, target.view(-1))
         self.log("training-loss", loss)
         return loss
 
-    def validation_step(self, batch, batch_idx):
+    def validation_step(self, batch, batch_idx = 0):
         inputs, target = batch
-        output = self(inputs, target)
+        output = self(inputs)
         loss = torch.nn.functional.nll_loss(output, target.view(-1))
         self.log("val-loss", loss)
 
-    def test_step(self, batch, batch_idx):
+    def test_step(self, batch, batch_idx = 0):
         inputs, target = batch
-        output = self(inputs, target)
+        output = self(inputs)
         loss = torch.nn.functional.nll_loss(output, target.view(-1))
         self.log("test-loss", loss)
 
