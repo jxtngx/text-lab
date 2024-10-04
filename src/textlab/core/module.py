@@ -94,7 +94,7 @@ class LabModule(pl.LightningModule):
     def forward(self, inputs):
         return self.model(inputs)
 
-    def training_step(self, batch, batch_idx):
+    def training_step(self, batch, batch_idx = 0):
         inputs, target = batch
         output = self(inputs)
         loss = torch.nn.functional.nll_loss(output, target.view(-1))
