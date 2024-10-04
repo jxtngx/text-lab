@@ -51,7 +51,8 @@ def test_trainloader():
 def test_testloader():
     datamodule = LabDataModule()
     datamodule.prepare_data()
-    datamodule.setup("fit")
+    datamodule.setup("fit")  # create splits
+    datamodule.setup("test")
     loader = datamodule.test_dataloader()
     sample = loader.dataset[0][0]
     assert isinstance(sample, torch.Tensor)

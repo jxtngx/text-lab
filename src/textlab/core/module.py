@@ -4,6 +4,7 @@ Code is adapted from the PyTorch examples at
 https://github.com/pytorch/examples/blob/main/word_language_model
 
 """
+
 import math
 from typing import Optional
 
@@ -21,7 +22,13 @@ if hasattr(MultiheadAttention, "_reset_parameters") and not hasattr(MultiheadAtt
 
 class Transformer(nn.Module):
     def __init__(
-        self, vocab_size: int, ninp: int = 200, nhead: int = 2, nhid: int = 200, nlayers: int = 2, dropout: float = 0.2
+        self,
+        vocab_size: int,
+        ninp: int = 200,
+        nhead: int = 2,
+        nhid: int = 200,
+        nlayers: int = 2,
+        dropout: float = 0.2,
     ) -> None:
         super().__init__()
         self.pos_encoder = PositionalEncoding(ninp, dropout)
@@ -91,25 +98,25 @@ class LabModule(pl.LightningModule):
         super().__init__()
         self.model = Transformer(vocab_size=vocab_size)
 
-    def forward(self, inputs):
-        return self.model(inputs)
+    def forward(self, inputs, target):
+        return self.model(inputs, target)
 
-    def training_step(self, batch, batch_idx = 0):
+    def training_step(self, batch, batch_idx=0):
         inputs, target = batch
-        output = self(inputs)
+        output = self(inputs, target)
         loss = torch.nn.functional.nll_loss(output, target.view(-1))
         self.log("training-loss", loss)
         return loss
 
-    def validation_step(self, batch, batch_idx = 0):
+    def validation_step(self, batch, batch_idx=0):
         inputs, target = batch
-        output = self(inputs)
+        output = self(inputs, target)
         loss = torch.nn.functional.nll_loss(output, target.view(-1))
         self.log("val-loss", loss)
 
-    def test_step(self, batch, batch_idx = 0):
+    def test_step(self, batch, batch_idx=0):
         inputs, target = batch
-        output = self(inputs)
+        output = self(inputs, target)
         loss = torch.nn.functional.nll_loss(output, target.view(-1))
         self.log("test-loss", loss)
 
