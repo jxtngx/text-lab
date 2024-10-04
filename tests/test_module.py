@@ -22,16 +22,16 @@ def test_module_not_abstract():
 
 
 def test_module_forward():
-    input_sample = torch.randn((1, 784))
+    inputs, target = torch.randn((1, 784)), 1
     model = LabModule()
-    preds, label = model.forward(input_sample)
-    assert preds.shape == input_sample.shape
+    preds, label = model.forward(inputs, target)
+    assert preds.shape == inputs.shape
 
 
 def test_module_training_step():
-    input_sample = torch.randn((1, 784)), 1
+    batch = torch.randn((1, 784)), 1
     model = LabModule()
-    loss = model.training_step(input_sample)
+    loss = model.training_step(batch)
     assert isinstance(loss, torch.Tensor)
 
 
