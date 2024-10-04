@@ -34,7 +34,7 @@ def test_prepare_data():
 def test_setup():
     datamodule = LabDataModule()
     datamodule.prepare_data()
-    datamodule.setup()
+    datamodule.setup("fit")
     data_keys = ["train_data", "test_data", "val_data"]
     assert all(key in dir(datamodule) for key in data_keys)
 
@@ -51,7 +51,7 @@ def test_trainloader():
 def test_testloader():
     datamodule = LabDataModule()
     datamodule.prepare_data()
-    datamodule.setup()
+    datamodule.setup("fit")
     loader = datamodule.test_dataloader()
     sample = loader.dataset[0][0]
     assert isinstance(sample, torch.Tensor)
@@ -60,7 +60,7 @@ def test_testloader():
 def test_valloader():
     datamodule = LabDataModule()
     datamodule.prepare_data()
-    datamodule.setup()
+    datamodule.setup("fit")
     loader = datamodule.val_dataloader()
     sample = loader.dataset[0][0]
     assert isinstance(sample, torch.Tensor)
